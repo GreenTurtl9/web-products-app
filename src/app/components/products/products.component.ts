@@ -1,4 +1,6 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, filter, map, Observable, of, startWith } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
@@ -13,7 +15,9 @@ export class ProductsComponent implements OnInit {
 
   products$: Observable<AppState<Product[]>> | null = null;
   readonly DataState = DataState;
-  constructor(private productsService: ProductsService) { }
+
+  constructor(private productsService: ProductsService, private router: Router,
+     private currency: CurrencyPipe) { }
 
   ngOnInit(): void {
     this.onGetAllProducts();
@@ -64,6 +68,10 @@ export class ProductsComponent implements OnInit {
     this.productsService.deleteProduct(product).subscribe(data =>{
       this.onGetAllProducts();
     })
+  }
+
+  onNewProduct() {
+    this.router.navigateByUrl("/newProduct")
   }
 
 }

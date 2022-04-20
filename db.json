@@ -37,8 +37,24 @@
       "name": "Printer",
       "price": 1400,
       "quantity": 30,
-      "selected": false,
+      "selected": true,
       "available": false
+    },
+    {
+      "name": "keyboard",
+      "price": 200,
+      "quantity": 10,
+      "selected": true,
+      "available": true,
+      "id": 7
+    },
+    {
+      "name": "Mic",
+      "price": 200,
+      "quantity": 10,
+      "selected": true,
+      "available": false,
+      "id": 8
     }
   ]
 }

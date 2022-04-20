@@ -9,6 +9,9 @@
         <li>
             <button class="btn btn-sm btn-outline-info ml-2" (click)="onGetAvailableProducts()">Available</button>
         </li>
+        <li>
+            <button class="btn btn-sm btn-outline-info ml-2" (click)="onNewProduct()">New Product</button>
+        </li>
     </ul>
     <ul class="navbar navbar-nav ml-auto">
         <form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
@@ -47,7 +50,7 @@
             <tr *ngFor="let p of result.data">
                 <td>{{p.id}}</td>
                 <td>{{p.name}}</td>
-                <td>{{p.price}}</td>
+                <td>{{p.price | currency}}</td>
                 <td>{{p.quantity}}</td>
                 <td>{{p.selected}}</td>
                 <td>{{p.available}}</td>

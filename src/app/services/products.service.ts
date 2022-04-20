@@ -33,9 +33,12 @@ export class ProductsService {
     p.selected = !p.selected;
     return this.http.put<Product>(this.host + "/products/" + p.id, p);
   }
-
+  
   deleteProduct(p: Product): Observable<void> {
     return this.http.delete<void>(this.host + "/products/" + p.id);
   }
-
+  
+  saveProduct(p: Product): Observable<Product> {
+    return this.http.post<Product>(this.host + "/products/", p);
+  }
 }
