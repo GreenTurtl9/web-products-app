@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Computer",
+      "price": 7300,
+      "quantity": 600,
+      "selected": true,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Printer",
+      "price": 300,
+      "quantity": 100,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "CPU",
+      "price": 5200,
+      "quantity": 50,
+      "selected": true,
+      "available": false
+    },
+    {
+      "id": 4,
+      "name": "SmartPhone",
+      "price": 600,
+      "quantity": 143,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 5,
+      "name": "Monitor",
+      "price": 2200,
+      "quantity": 70,
+      "selected": false,
+      "available": false
+    }
+  ]
+}
