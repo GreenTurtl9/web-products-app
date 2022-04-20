@@ -53,9 +53,14 @@
                 <td>{{p.available}}</td>
                 <td>
                     <button class="btn btn-sm" [ngClass]="p.selected? 'btn-success' : 'btn-danger'"
-                     (click)="onSelect(p)">
-                        <span *ngIf="p.selected" >Unselect</span>
-                        <span *ngIf="!p.selected" >Selct</span>
+                        (click)="onSelect(p)">
+                        <span *ngIf="p.selected">Unselect</span>
+                        <span *ngIf="!p.selected">Selct</span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-sm" (click)="onDelete(p)">
+                        <span class="fa fa-trash-o"></span>
                     </button>
                 </td>
             </tr>
