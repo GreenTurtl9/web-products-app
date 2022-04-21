@@ -1,19 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
-import { ActionEvent, AppState, DataState, ProductActionsTypes } from 'src/app/state/product.state';
+import { ActionEvent, ProductActionsTypes } from 'src/app/state/product.state';
 
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  selector: 'app-product-item',
+  templateUrl: './product-item.component.html',
+  styleUrls: ['./product-item.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductItemComponent implements OnInit {
 
-  @Input() products$: Observable<AppState<Product[]>> | null = null;
+  @Input() product?: Product;
   @Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter();
-
-  readonly DataState = DataState;
 
   constructor() { }
 
@@ -30,10 +27,6 @@ export class ProductsListComponent implements OnInit {
 
   onEdit(p: Product) {
     this.productEventEmitter.emit({ type: ProductActionsTypes.EDIT_PRODUCT, payload: p });
-  }
-
-  onActionEvent($event: any) {
-    this.productEventEmitter.emit($event);
   }
 
 }

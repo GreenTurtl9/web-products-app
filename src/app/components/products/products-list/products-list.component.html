@@ -23,31 +23,9 @@
                 <th>Selected</th>
                 <th>Available</th>
             </tr>
-            <tr *ngFor="let p of result.data">
-                <td>{{p.id}}</td>
-                <td>{{p.name}}</td>
-                <td>{{p.price | currency}}</td>
-                <td>{{p.quantity}}</td>
-                <td>{{p.selected}}</td>
-                <td>{{p.available}}</td>
-                <td>
-                    <button class="btn btn-sm" [ngClass]="p.selected? 'btn-success' : 'btn-danger'"
-                        (click)="onSelect(p)">
-                        <span *ngIf="p.selected">Unselect</span>
-                        <span *ngIf="!p.selected">Selct</span>
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn-sm" (click)="onDelete(p)">
-                        <span class="fa fa-trash-o"></span>
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn-sm" (click)="onEdit(p)">
-                        <span class="fa fa-edit"></span>
-                    </button>
-                </td>
-            </tr>
+            <app-product-item [product]="p" (productEventEmitter)="onActionEvent($event)" *ngFor="let p of result.data"
+                style="display: contents">
+            </app-product-item>
         </table>
     </ng-container>
 </ng-container>
