@@ -9,7 +9,7 @@ import { Product } from '../model/product';
 })
 export class ProductsService {
   host = environment.host;
-  
+
   constructor(private http: HttpClient) { }
 
 
@@ -33,12 +33,20 @@ export class ProductsService {
     p.selected = !p.selected;
     return this.http.put<Product>(this.host + "/products/" + p.id, p);
   }
-  
+
   deleteProduct(p: Product): Observable<void> {
     return this.http.delete<void>(this.host + "/products/" + p.id);
   }
-  
+
   saveProduct(p: Product): Observable<Product> {
     return this.http.post<Product>(this.host + "/products/", p);
+  }
+
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(this.host + "/products/" + id);
+  }
+
+  editProduct(p: Product): Observable<Product> {
+    return this.http.put<Product>(this.host + "/products/" + p.id, p);
   }
 }

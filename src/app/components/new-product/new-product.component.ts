@@ -28,11 +28,11 @@ export class NewProductComponent implements OnInit {
   }
 
   onSaveProduct() {
-    this.submitted =true;
-    if(this.productFormGroup.invalid) return;
-    this.productsService.saveProduct(this.productFormGroup.value).subscribe(data => {
+    this.submitted = true;
+    if (this.productFormGroup.invalid) return;
+    this.productsService.saveProduct(this.productFormGroup.value).subscribe(product => {
       this.router.navigateByUrl("/products")
-      alert("product saved!");
+      alert(product.name + " saved!");
     });
   }
 

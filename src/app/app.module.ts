@@ -10,6 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { CurrencyPipe } from '@angular/common';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { ProductNavbarComponent } from './components/products/product-navbar/product-navbar.component';
+import { ProductsNavbarComponent } from './components/products/products-navbar/products-navbar.component';
+import { ProductsListComponent } from './components/products/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { CurrencyPipe } from '@angular/common';
     NavbarComponent,
     ProductsComponent,
     HomeComponent,
-    NewProductComponent
+    NewProductComponent,
+    EditProductComponent,
+    ProductNavbarComponent,
+    ProductsNavbarComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
