@@ -1,0 +1,53 @@
+<ng-container *ngIf="(products$ | async) as result" [ngSwitch]="result.dataState">
+    <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+        <div class="col-12">
+            LOADING...
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+        <div class="text-center col-12">
+            <div class="alert alert-danger">
+                {{result.errorMessage}}
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Selected</th>
+                <th>Available</th>
+            </tr>
+            <tr *ngFor="let p of result.data">
+                <td>{{p.id}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price | currency}}</td>
+                <td>{{p.quantity}}</td>
+                <td>{{p.selected}}</td>
+                <td>{{p.available}}</td>
+                <td>
+                    <button class="btn btn-sm" [ngClass]="p.selected? 'btn-success' : 'btn-danger'"
+                        (click)="onSelect(p)">
+                        <span *ngIf="p.selected">Unselect</span>
+                        <span *ngIf="!p.selected">Selct</span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-sm" (click)="onDelete(p)">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-sm" (click)="onEdit(p)">
+                        <span class="fa fa-edit"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </ng-container>
+</ng-container>
