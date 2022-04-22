@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { catchError, filter, map, Observable, of, startWith } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
-import { AppState, DataState, ProductActionsTypes } from 'src/app/state/product.state';
+import { EventDriverService } from 'src/app/state/event.driver.service';
+import { ActionEvent, AppState, DataState, ProductActionsTypes } from 'src/app/state/product.state';
 
 @Component({
   selector: 'app-products',
@@ -17,10 +18,13 @@ export class ProductsComponent implements OnInit {
   readonly DataState = DataState;
 
   constructor(private productsService: ProductsService, private router: Router,
-    private currency: CurrencyPipe) { }
+    private currency: CurrencyPipe, private eventDriverService: EventDriverService) { }
 
   ngOnInit(): void {
     this.onGetAllProducts();
+    this.eventDriverService.sourceEventSubjectObservable.subscribe((actionEvent: ActionEvent) =>{
+      this.onActionEvent(actionEvent);
+    })
   }
 
   onGetAllProducts() {

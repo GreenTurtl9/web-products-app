@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { EventDriverService } from 'src/app/state/event.driver.service';
 import { ActionEvent, ProductActionsTypes } from 'src/app/state/product.state';
 
 @Component({
@@ -8,31 +9,36 @@ import { ActionEvent, ProductActionsTypes } from 'src/app/state/product.state';
 })
 export class ProductsNavbarComponent implements OnInit {
 
-  @Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter();
+  //@Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter();
 
-  constructor() { }
+  constructor(private eventDriverService: EventDriverService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
   }
 
   onGetAllProducts() {
-    this.productEventEmitter.emit({ type: ProductActionsTypes.GET_ALL_PRODUCTS });
+    //this.productEventEmitter.emit({ type: ProductActionsTypes.GET_ALL_PRODUCTS });
+    this.eventDriverService.publishEvent({ type: ProductActionsTypes.GET_ALL_PRODUCTS });
   }
 
   onGetSelectedProducts() {
-    this.productEventEmitter.emit({ type: ProductActionsTypes.GET_SELECTED_PRODUCTS });
+    //this.productEventEmitter.emit({ type: ProductActionsTypes.GET_SELECTED_PRODUCTS });
+    this.eventDriverService.publishEvent({ type: ProductActionsTypes.GET_SELECTED_PRODUCTS });
   }
 
   onGetAvailableProducts() {
-    this.productEventEmitter.emit({ type: ProductActionsTypes.GET_AVAILABLE_PRODUCTS });
+    //this.productEventEmitter.emit({ type: ProductActionsTypes.GET_AVAILABLE_PRODUCTS });
+    this.eventDriverService.publishEvent({ type: ProductActionsTypes.GET_AVAILABLE_PRODUCTS });
   }
 
   onNewProduct() {
-    this.productEventEmitter.emit({ type: ProductActionsTypes.NEW_PRODUCT });
+    //this.productEventEmitter.emit({ type: ProductActionsTypes.NEW_PRODUCT });
+    this.eventDriverService.publishEvent({ type: ProductActionsTypes.NEW_PRODUCT });
   }
 
   onSearch(value: any) {
-    this.productEventEmitter.emit({ type: ProductActionsTypes.SEARCH_PRODUCTS, payload: value });
+    //this.productEventEmitter.emit({ type: ProductActionsTypes.SEARCH_PRODUCTS, payload: value });
+    this.eventDriverService.publishEvent({ type: ProductActionsTypes.SEARCH_PRODUCTS, payload: value });
   }
 
 }

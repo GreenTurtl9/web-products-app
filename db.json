@@ -11,9 +11,9 @@
     {
       "id": 3,
       "name": "CPU",
-      "price": 5200,
+      "price": "5000",
       "quantity": 50,
-      "selected": false,
+      "selected": true,
       "available": false
     },
     {
@@ -30,14 +30,6 @@
       "price": 2200,
       "quantity": 70,
       "selected": false,
-      "available": false
-    },
-    {
-      "id": 6,
-      "name": "Printer",
-      "price": 1400,
-      "quantity": 30,
-      "selected": true,
       "available": false
     },
     {
