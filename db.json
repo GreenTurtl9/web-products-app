@@ -14,12 +14,12 @@
       "price": "5000",
       "quantity": 50,
       "selected": true,
-      "available": false
+      "available": true
     },
     {
       "id": 4,
       "name": "SmartPhone",
-      "price": 600,
+      "price": "1600",
       "quantity": 143,
       "selected": false,
       "available": true
@@ -29,16 +29,24 @@
       "name": "Monitor",
       "price": 2200,
       "quantity": 70,
-      "selected": false,
+      "selected": true,
       "available": false
     },
     {
       "name": "keyboard",
       "price": 200,
       "quantity": 10,
-      "selected": true,
+      "selected": false,
       "available": true,
       "id": 7
+    },
+    {
+      "id": 8,
+      "name": "klms",
+      "price": 200,
+      "quantity": 10,
+      "selected": false,
+      "available": false
     }
   ]
 }
