@@ -13,7 +13,7 @@
       "name": "CPU",
       "price": "5000",
       "quantity": 50,
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {
@@ -29,7 +29,7 @@
       "name": "Monitor",
       "price": 2200,
       "quantity": 70,
-      "selected": true,
+      "selected": false,
       "available": false
     },
     {
@@ -45,7 +45,7 @@
       "name": "klms",
       "price": 200,
       "quantity": 10,
-      "selected": false,
+      "selected": true,
       "available": false
     }
   ]

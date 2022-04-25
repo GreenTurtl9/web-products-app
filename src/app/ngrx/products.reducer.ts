@@ -28,6 +28,27 @@ export function productsReducer(state: ProductsState = initState, action: Action
             return {...state, dataState: DataState.LOADED_STATE, products: (<ProductsActions>action).payload};
         case ProductActionsTypes.GET_ALL_PRODUCTS_ERROR :
             return {...state, dataState: DataState.ERROR_STATE, errorMessage: (<ProductsActions>action).payload};
+        case ProductActionsTypes.GET_SELECTED_PRODUCTS :
+            return {...state, dataState: DataState.LOADING_STATE};
+        case ProductActionsTypes.GET_SELECTED_PRODUCTS_SUCCESS :
+            return {...state, dataState: DataState.LOADED_STATE, products: (<ProductsActions>action).payload};
+        case ProductActionsTypes.GET_SELECTED_PRODUCTS_ERROR :
+            return {...state, dataState: DataState.ERROR_STATE, errorMessage: (<ProductsActions>action).payload};
+        case ProductActionsTypes.SEARCH_PRODUCTS :
+            return {...state, dataState: DataState.LOADING_STATE};
+        case ProductActionsTypes.SEARCH_PRODUCTS_SUCCESS :
+            return {...state, dataState: DataState.LOADED_STATE, products: (<ProductsActions>action).payload};
+        case ProductActionsTypes.SEARCH_PRODUCTS_ERROR :
+            return {...state, dataState: DataState.ERROR_STATE, errorMessage: (<ProductsActions>action).payload};
+        case ProductActionsTypes.SELECT_PRODUCT :
+            return {...state, dataState: DataState.LOADING_STATE};
+        case ProductActionsTypes.SELECT_PRODUCT_SUCCESS :
+            let product: Product= (<ProductsActions>action).payload;
+            let list = [...state.products];
+            let data: Product[] = list.map(p => (p.id == product.id)? product : p);
+            return {...state, dataState: DataState.LOADED_STATE, products: data};
+        case ProductActionsTypes.SELECT_PRODUCT_ERROR :
+            return {...state, dataState: DataState.ERROR_STATE, errorMessage: (<ProductsActions>action).payload};
         default : return {...state};
     }
 }
