@@ -14,7 +14,12 @@ import { EditProductComponent } from './components/products/edit-product/edit-pr
 import { ProductsNavbarComponent } from './components/products/products-navbar/products-navbar.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
 import { ProductItemComponent } from './components/products/products-list/product-item/product-item.component';
-import { StatsComponent } from './components/stats/stats.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { productsReducer } from './ngrx/products.reducer';
+import { ProductsEffect } from './ngrx/products.effects';
+
 
 @NgModule({
   declarations: [
@@ -27,14 +32,16 @@ import { StatsComponent } from './components/stats/stats.component';
     ProductsNavbarComponent,
     ProductsListComponent,
     ProductItemComponent,
-    StatsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({catalogState:productsReducer}),
+    EffectsModule.forRoot([ProductsEffect]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

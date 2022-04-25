@@ -1,4 +1,9 @@
-<ng-container *ngIf="(products$ | async) as result" [ngSwitch]="result.dataState">
+<ng-container *ngIf="productsState$ | async as state" [ngSwitch]="state.dataState">
+    <ng-container *ngSwitchCase="DataState.INITIAL_STATE">
+        <div class="col-12">
+            Initial State
+        </div>
+    </ng-container>
     <ng-container *ngSwitchCase="DataState.LOADING_STATE">
         <div class="col-12">
             LOADING...
@@ -8,7 +13,7 @@
     <ng-container *ngSwitchCase="DataState.ERROR_STATE">
         <div class="text-center col-12">
             <div class="alert alert-danger">
-                {{result.errorMessage}}
+                {{state.errorMessage | json}}
             </div>
         </div>
     </ng-container>
@@ -23,7 +28,7 @@
                 <th>Selected</th>
                 <th>Available</th>
             </tr>
-            <app-product-item [product]="p" *ngFor="let p of result.data"
+            <app-product-item [product]="product" *ngFor="let product of state.products"
                 style="display: contents">
             </app-product-item>
         </table>

@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
-import { EventDriverService } from 'src/app/state/event.driver.service';
-import { ProductActionsTypes } from 'src/app/state/product.state';
 
 @Component({
   selector: 'app-new-product',
@@ -24,7 +22,7 @@ export class NewProductComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private productsService: ProductsService,
-    private router: Router, private eventDriverService: EventDriverService) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +31,6 @@ export class NewProductComponent implements OnInit {
     this.submitted = true;
     if (this.productFormGroup.invalid) return;
     this.productsService.saveProduct(this.productFormGroup.value).subscribe(product => {
-      this.eventDriverService.publishEvent({type: ProductActionsTypes.PRODUCT_SAVED});
       this.router.navigateByUrl("/products");
       alert(product.name + " saved!");
     });

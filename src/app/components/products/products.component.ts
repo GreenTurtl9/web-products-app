@@ -1,11 +1,12 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, filter, map, Observable, of, startWith } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
+import { GetAllProductsAction, ProductActionsTypes } from 'src/app/ngrx/products.actions';
+import { DataState, ProductsState } from 'src/app/ngrx/products.reducer';
 import { ProductsService } from 'src/app/services/products.service';
-import { EventDriverService } from 'src/app/state/event.driver.service';
-import { ActionEvent, AppState, DataState, ProductActionsTypes } from 'src/app/state/product.state';
 
 @Component({
   selector: 'app-products',
@@ -14,50 +15,46 @@ import { ActionEvent, AppState, DataState, ProductActionsTypes } from 'src/app/s
 })
 export class ProductsComponent implements OnInit {
 
-  products$: Observable<AppState<Product[]>> | null = null;
+  productsState$: Observable<ProductsState> | null = null;
   readonly DataState = DataState;
 
   constructor(private productsService: ProductsService, private router: Router,
-    private currency: CurrencyPipe, private eventDriverService: EventDriverService) { }
+    private currency: CurrencyPipe, private store: Store<any>) { }
 
   ngOnInit(): void {
+    this.productsState$ = this.store.pipe(
+      map((state) => state.catalogState)
+    );
     this.onGetAllProducts();
-    this.eventDriverService.sourceEventSubjectObservable.subscribe((actionEvent: ActionEvent) =>{
-      this.onActionEvent(actionEvent);
-    })
   }
 
   onGetAllProducts() {
-    this.products$ = this.productsService.getAllProducts().pipe(
-      map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
-      startWith({ dataState: DataState.LOADING_STATE }),
-      catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
-    );
+    this.store.dispatch(new GetAllProductsAction({}));
   }
 
-  onGetSelectedProducts() {
-    this.products$ = this.productsService.getSelectedProducts().pipe(
-      map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
-      startWith({ dataState: DataState.LOADING_STATE }),
-      catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
-    );
-  }
+  // onGetSelectedProducts() {
+  //   this.productsState$ = this.productsService.getSelectedProducts().pipe(
+  //     map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
+  //     startWith({ dataState: DataState.LOADING_STATE }),
+  //     catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
+  //   );
+  // }
 
-  onGetAvailableProducts() {
-    this.products$ = this.productsService.getAvailableProducts().pipe(
-      map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
-      startWith({ dataState: DataState.LOADING_STATE }),
-      catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
-    );
-  }
+  // onGetAvailableProducts() {
+  //   this.productsState$ = this.productsService.getAvailableProducts().pipe(
+  //     map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
+  //     startWith({ dataState: DataState.LOADING_STATE }),
+  //     catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
+  //   );
+  // }
 
-  onSearch(dataForm: any) {
-    this.products$ = this.productsService.searchProducts(dataForm.keyword).pipe(
-      map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
-      startWith({ dataState: DataState.LOADING_STATE }),
-      catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
-    );
-  }
+  // onSearch(dataForm: any) {
+  //   this.productsState$ = this.productsService.searchProducts(dataForm.keyword).pipe(
+  //     map(data => ({ dataState: DataState.LOADED_STATE, data: data })),
+  //     startWith({ dataState: DataState.LOADING_STATE }),
+  //     catchError(error => of({ dataState: DataState.ERROR_STATE, errorMessage: error.message }))
+  //   );
+  // }
 
   onNewProduct() {
     this.router.navigateByUrl("/newProduct")
@@ -86,20 +83,20 @@ export class ProductsComponent implements OnInit {
     switch ($event.type) {
       case ProductActionsTypes.GET_ALL_PRODUCTS: this.onGetAllProducts();
         break;
-      case ProductActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProducts();
-        break;
-      case ProductActionsTypes.GET_AVAILABLE_PRODUCTS: this.onGetAvailableProducts();
-        break;
-      case ProductActionsTypes.NEW_PRODUCT: this.onNewProduct();
-        break;
-      case ProductActionsTypes.SEARCH_PRODUCTS: this.onSearch($event.payload);
-        break;
-      case ProductActionsTypes.SELECT_PRODUCT: this.onSelect($event.payload);
-        break;
-      case ProductActionsTypes.DELETE_PRODUCT: this.onDelete($event.payload);
-        break;
-      case ProductActionsTypes.EDIT_PRODUCT: this.onEdit($event.payload);
-        break;
+      // case ProductActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProducts();
+      //   break;
+      // case ProductActionsTypes.GET_AVAILABLE_PRODUCTS: this.onGetAvailableProducts();
+      //   break;
+      // case ProductActionsTypes.NEW_PRODUCT: this.onNewProduct();
+      //   break;
+      // case ProductActionsTypes.SEARCH_PRODUCTS: this.onSearch($event.payload);
+      //   break;
+      // case ProductActionsTypes.SELECT_PRODUCT: this.onSelect($event.payload);
+      //   break;
+      // case ProductActionsTypes.DELETE_PRODUCT: this.onDelete($event.payload);
+      //   break;
+      // case ProductActionsTypes.EDIT_PRODUCT: this.onEdit($event.payload);
+      //   break;
     }
   }
 
