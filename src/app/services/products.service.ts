@@ -41,11 +41,11 @@ export class ProductsService {
     return this.http.post<Product>(this.host + "/products/", p);
   }
 
-  getProduct(id: number): Observable<Product> {
+  getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(this.host + "/products/" + id);
   }
 
-  editProduct(p: Product): Observable<Product> {
+  updateProduct(p: Product): Observable<Product> {
     return this.http.put<Product>(this.host + "/products/" + p.id, p);
   }
 }

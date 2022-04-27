@@ -34,7 +34,11 @@ export enum ProductActionsTypes {
 
     EDIT_PRODUCT = '[Product] Edit product',
     EDIT_PRODUCT_SUCCESS = '[Product] Edit product success',
-    EDIT_PRODUCT_ERROR = '[Product] Edit product error'
+    EDIT_PRODUCT_ERROR = '[Product] Edit product error',
+
+    UPDATE_PRODUCT = '[Product] Update product',
+    UPDATE_PRODUCT_SUCCESS = '[Product] Update product success',
+    UPDATE_PRODUCT_ERROR = '[Product] Update product error'
 }
 
 export class GetAllProductsAction implements Action{
@@ -47,11 +51,11 @@ export class GetAllProductsSuccessAction implements Action{
     constructor(public payload: Product[]) {}
 }
 
-
 export class GetAllProductsErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.GET_ALL_PRODUCTS_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class GetSelectedProductsAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.GET_SELECTED_PRODUCTS;
@@ -63,11 +67,11 @@ export class GetSelectedProductsSuccessAction implements Action{
     constructor(public payload: Product[]) {}
 }
 
-
 export class GetSelectedProductsErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.GET_SELECTED_PRODUCTS_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class SearchProductsAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SEARCH_PRODUCTS;
@@ -79,11 +83,11 @@ export class SearchProductsSuccessAction implements Action{
     constructor(public payload: Product[]) {}
 }
 
-
 export class SearchProductsErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SEARCH_PRODUCTS_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class SelectProductsAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SELECT_PRODUCT;
@@ -95,11 +99,11 @@ export class SelectProductsSuccessAction implements Action{
     constructor(public payload: Product) {}
 }
 
-
 export class SelectProductsErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SELECT_PRODUCT_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class DeleteProductAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.DELETE_PRODUCT;
@@ -111,11 +115,11 @@ export class DeleteProductSuccessAction implements Action{
     constructor(public payload: Product) {}
 }
 
-
 export class DeleteProductErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.DELETE_PRODUCT_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class AddProductAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.ADD_PRODUCT;
@@ -127,11 +131,11 @@ export class AddProductSuccessAction implements Action{
     constructor(public payload: any) {}
 }
 
-
 export class AddProductErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.ADD_PRODUCT_ERROR;
     constructor(public payload: string) {}
 }
+
 
 export class SaveProductAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SAVE_PRODUCT;
@@ -143,15 +147,15 @@ export class SaveProductSuccessAction implements Action{
     constructor(public payload: Product) {}
 }
 
-
 export class SaveProductErrorAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.SAVE_PRODUCT_ERROR;
     constructor(public payload: string) {}
 }
 
+
 export class EditProductAction implements Action{
     type: ProductActionsTypes = ProductActionsTypes.EDIT_PRODUCT;
-    constructor(public payload: Product) {}
+    constructor(public payload: number) {}
 }
 
 export class EditProductSuccessAction implements Action{
@@ -166,6 +170,23 @@ export class EditProductErrorAction implements Action{
 }
 
 
+export class UpdateProductAction implements Action{
+    type: ProductActionsTypes = ProductActionsTypes.UPDATE_PRODUCT;
+    constructor(public payload: Product) {}
+}
+
+export class UpdateProductSuccessAction implements Action{
+    type: ProductActionsTypes = ProductActionsTypes.UPDATE_PRODUCT_SUCCESS;
+    constructor(public payload: Product) {}
+}
+
+
+export class UpdateProductErrorAction implements Action{
+    type: ProductActionsTypes = ProductActionsTypes.UPDATE_PRODUCT_ERROR;
+    constructor(public payload: string) {}
+}
+
+
 export type ProductsActions =
 GetAllProductsAction | GetAllProductsSuccessAction | GetAllProductsErrorAction |
 GetSelectedProductsAction | GetSelectedProductsSuccessAction | GetSelectedProductsErrorAction |
@@ -174,4 +195,5 @@ SelectProductsAction | SelectProductsSuccessAction | SelectProductsErrorAction |
 DeleteProductAction | DeleteProductSuccessAction | DeleteProductErrorAction |
 AddProductAction | AddProductSuccessAction | AddProductErrorAction |
 SaveProductAction | SaveProductSuccessAction | SaveProductErrorAction |
-EditProductAction | EditProductSuccessAction | EditProductErrorAction;
+EditProductAction | EditProductSuccessAction | EditProductErrorAction |
+UpdateProductAction | UpdateProductSuccessAction | UpdateProductErrorAction;

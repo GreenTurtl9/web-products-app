@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { State, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AddProductAction, SaveProductAction } from 'src/app/ngrx/products.actions';
 import { DataState, ProductsState } from 'src/app/ngrx/products.reducer';
 import { ProductsService } from 'src/app/services/products.service';

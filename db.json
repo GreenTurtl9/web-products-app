@@ -18,7 +18,7 @@
     },
     {
       "id": 4,
-      "name": "SmartPhone",
+      "name": "Phone5",
       "price": "1600",
       "quantity": 143,
       "selected": false,
@@ -42,7 +42,7 @@
     },
     {
       "id": 8,
-      "name": "klms",
+      "name": "klm",
       "price": 200,
       "quantity": 10,
       "selected": true,
